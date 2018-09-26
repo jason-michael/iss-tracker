@@ -1,3 +1,8 @@
+// Get ui elements
+const SEARCHBAR = $('#search-input');
+const SEARCHBUTTON = $('#submit-button');
+
+
 let ISSLocation;
 let ISSCrew;
 
@@ -6,6 +11,24 @@ getISSLocation();
 getISSCrew();
 
 
+
+$(SEARCHBUTTON).on('click', function(e) {
+    e.preventDefault();
+
+    console.log(SEARCHBAR.val().trim());
+
+});
+
+// #region Functions
+
+function getGeocode(address) {
+    // ? example url: https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
+}
+
+/**
+ * Sets the current latitude and longitude coorinates of the ISS.
+ * Todo: Return the coordinates rather than set the global variable.
+ */
 function getISSLocation() {
 
     $.ajax({
@@ -23,6 +46,10 @@ function getISSLocation() {
 
 }
 
+/**
+ * Stores each ISS crewmember in an array.
+ * Todo: Return the crew array rather than set a global variable.
+ */
 function getISSCrew() {
 
     $.ajax({
@@ -35,3 +62,4 @@ function getISSCrew() {
         ISSCrew = response.people;
     });
 }
+// #endregion
