@@ -1,42 +1,59 @@
-// Get ui elements
+// #region Global vars
 const SEARCHBAR = $('#search-input');
 const SEARCHBUTTON = $('#submit-button');
 const GOOGLE_API_KEY = 'AIzaSyD-kc7RMsdE13o6eAQEWeQECWzP8AJSr_A';
 
 let ISSLocation;
 let ISSCrew;
-let address = '2832 Iowa St, Lawrence, KS, 66046';
+let streetAddress;
+let geocodeLocation;
+// #endregion Global vars
 
-// INIT
+// #region Initialization
 getISSLocation();
 getISSCrew();
-getGeocode(address);
+// #endregion Initialization
 
-
+// #region Events
 $(SEARCHBUTTON).on('click', function(e) {
+    
     e.preventDefault();
 
-    console.log(SEARCHBAR.val().trim());
+    streetAddress = SEARCHBAR.val().trim();
+
+    getGeocode(streetAddress);
+
+    // Clear the search input after search.
+    SEARCHBAR.val('');
 
 });
+// #endregion Events
 
 // #region Functions
 
+/**
+ * Sets geocodeLocation for a given address.
+ * 
+ * @param {string} address The address to geocode.
+ */
 function getGeocode(address) {
-    // ? example url: https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
 
-    let newAddress = address.replace(/ /g, '+');
+    let urlAddress = address.replace(/ /g, '+');
 
-    console.log(newAddress);
+    let queryURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${urlAddress}&key=${GOOGLE_API_KEY}`;
 
-    // let queryURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${}&key=${GOOGLE_API_KEY}`;
+    $.ajax({
+        method: 'GET',
+        url: queryURL
+    }).done(function(response){
+        geocodeLocation = {
+            lat: response.results[0].geometry.location.lat,
+            lng: response.results[0].geometry.location.lng
+        };
 
-    // $.ajax({
-    //     method: 'GET',
-    //     url: queryURL
-    // }).done(function(response){
-    //     console.log(response);
-    // });
+        // Todo: remove...
+        console.log(geocodeLocation)
+    });
 }
 
 /**
@@ -54,7 +71,7 @@ function getISSLocation() {
     }).done(function (response) {
         ISSLocation = {
             lat: response.iss_position.latitude,
-            lon: response.iss_position.longitude
+            lng: response.iss_position.longitude
         };
     });
 
@@ -76,4 +93,4 @@ function getISSCrew() {
         ISSCrew = response.people;
     });
 }
-// #endregion
+// #endregion Functions
