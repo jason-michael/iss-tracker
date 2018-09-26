@@ -1,15 +1,16 @@
 // Get ui elements
 const SEARCHBAR = $('#search-input');
 const SEARCHBUTTON = $('#submit-button');
-
+const GOOGLE_API_KEY = 'AIzaSyD-kc7RMsdE13o6eAQEWeQECWzP8AJSr_A';
 
 let ISSLocation;
 let ISSCrew;
+let address = '2832 Iowa St, Lawrence, KS, 66046';
 
-// Get initial ISS info
+// INIT
 getISSLocation();
 getISSCrew();
-
+getGeocode(address);
 
 
 $(SEARCHBUTTON).on('click', function(e) {
@@ -23,6 +24,19 @@ $(SEARCHBUTTON).on('click', function(e) {
 
 function getGeocode(address) {
     // ? example url: https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
+
+    let newAddress = address.replace(/ /g, '+');
+
+    console.log(newAddress);
+
+    // let queryURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${}&key=${GOOGLE_API_KEY}`;
+
+    // $.ajax({
+    //     method: 'GET',
+    //     url: queryURL
+    // }).done(function(response){
+    //     console.log(response);
+    // });
 }
 
 /**
