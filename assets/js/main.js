@@ -1,3 +1,11 @@
+let ISSLocation;
+let ISSCrew;
+
+// Get initial ISS info
+getISSLocation();
+getISSCrew();
+
+
 function getISSLocation() {
 
     $.ajax({
@@ -7,18 +15,16 @@ function getISSLocation() {
             xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         }
     }).done(function (response) {
-        position = {
-            lat: parseFloat(response.iss_position.latitude),
-            lng: parseFloat(response.iss_position.longitude)
-        }
-        // ISSMarker = addMarker(position, map, 'test');
-        // map.setCenter(position)
+        ISSLocation = {
+            lat: response.iss_position.latitude,
+            lon: response.iss_position.longitude
+        };
     });
 
 }
 
 function getISSCrew() {
-    
+
     $.ajax({
         method: 'GET',
         url: 'https://cors-anywhere.herokuapp.com/http://api.open-notify.org/astros.json',
@@ -26,7 +32,6 @@ function getISSCrew() {
             xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         }
     }).done(function (response) {
-        // ISSCrew = response.people;
+        ISSCrew = response.people;
     });
-
 }
