@@ -2,6 +2,7 @@ const SEARCHBAR = $('#search-input');
 const SEARCHBUTTON = $('#submit-button');
 const GOOGLE_API_KEY = 'AIzaSyD-kc7RMsdE13o6eAQEWeQECWzP8AJSr_A';
 let ISSLocation;
+let ISSPassTime;
 let ISSCrew;
 
 /* INITIALIZATION */
@@ -49,6 +50,7 @@ function getGeocode(address) {
 
         // TODO: Demo item, remove.
         console.log('Geocode for: ' + address, geocodeLocation);
+        getISSPassTime(geocodeLocation.lat, geocodeLocation.lng);
     });
 }
 
@@ -92,6 +94,23 @@ function getISSLocation() {
 
         // TODO: Demo item, remove.
         console.log('Current ISS location: ', ISSLocation);
+    });
+}
+
+/**
+ * Gets upcoming passes for a particular location.
+ * 
+ * @param {*} lat Latitude
+ * @param {*} lng Longitude
+ */
+function getISSPassTime(lat, lng) {
+
+    $.ajax({
+        method: 'GET',
+        url: `https://cors-anywhere.herokuapp.com/http://api.open-notify.org/iss-pass.json?lat=${lat}&lon=${lng}`
+    }).done(function(response) {
+        ISSPassTime = response.response[0];
+        console.log('Next pass time: ', ISSPassTime);
     });
 }
 
