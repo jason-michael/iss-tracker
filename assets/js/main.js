@@ -2,25 +2,31 @@ const SEARCHBAR = $('#search-input');
 const SEARCHBUTTON = $('#submit-button');
 const GOOGLE_API_KEY = 'AIzaSyD-kc7RMsdE13o6eAQEWeQECWzP8AJSr_A';
 let ISSLocation;
+let ISSPhysLoc;
 let ISSPassTime;
-let ISSCrew;
+let ISSInterval;
 
-/* INITIALIZATION */
-// Init the address autocompletion
+// #region Initialization
+
+// Initialize the address autocompletion
 google.maps.event.addDomListener(window, 'load', initAutocomplete);
 
-// TODO: Demo item, remove.
-runDemo();
-// setInterval(getISSLocation,1000);
+init();
 
-/* EVENTS */
+// #endregion Initialization
+
+// #region Events
+
 $(SEARCHBUTTON).on('click', function (e) {
     e.preventDefault();
     let streetAddress = SEARCHBAR.val().trim();
     getGeocode(streetAddress);
 });
 
-/* FUNCTIONS */
+// #endregion Events
+
+// #region Functions
+
 /**
  * Attaches the Google Places Autocomplete API to the searchbar.
  */
@@ -49,12 +55,15 @@ function getGeocode(address) {
             lng: response.results[0].geometry.location.lng
         };
 
-        // TODO: Demo item, remove.
-        console.log('Geocode for: ' + address, geocodeLocation);
         getISSPassTime(geocodeLocation.lat, geocodeLocation.lng);
     });
 }
 
+/**
+ * Get a physical location from latitude/longitude.
+ * @param {*} lat 
+ * @param {*} lng 
+ */
 function getReversedGeocode(lat, lng) {
 
     let queryURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_API_KEY}`;
@@ -64,18 +73,17 @@ function getReversedGeocode(lat, lng) {
         url: queryURL
     }).done(function (response) {
 
-        // TODO: Demo, remove.
         if (response.results.length === 0) {
-            console.log('No address found for:', lat, lng, 'See current location on map.');
+            ISSPhysLoc = 'No physical address found.';
         } else {
-            console.log('The ISS is over:', response.results[0].formatted_address);
+            ISSPhysLoc = response.results[0].formatted_address;
         }
     });
 }
 
 /**
  * Sets the current latitude and longitude coorinates of the ISS.
- * Todo: Return the coordinates rather than set the global variable.
+ * TODO: Return the coordinates rather than set the global variable.
  */
 function getISSLocation() {
 
@@ -93,9 +101,7 @@ function getISSLocation() {
 
         getReversedGeocode(ISSLocation.lat, ISSLocation.lng);
 
-        // TODO: Demo item, remove.
-        console.log('Current ISS location: ', ISSLocation);
-
+        // * Leaflet
         setMapView(ISSLocation.lat, ISSLocation.lng, 2);
         moveMarker(ISSLocation.lat, ISSLocation.lng);
     });
@@ -114,80 +120,23 @@ function getISSPassTime(lat, lng) {
         url: `https://cors-anywhere.herokuapp.com/http://api.open-notify.org/iss-pass.json?lat=${lat}&lon=${lng}`
     }).done(function(response) {
         ISSPassTime = response.response[0];
-        console.log('Next pass time: ', ISSPassTime);
     });
+}
+
+function trackISS(interval) {
+    ISSInterval = setInterval(getISSLocation, interval);
+}
+
+function untrackISS() {
+    clearInterval(ISSInterval);
 }
 
 /**
- * Stores each ISS crewmember in an array.
- * Todo: Return the crew array rather than set a global variable.
+ * Initialize the app.
  */
-function getISSCrew() {
-
-    $.ajax({
-        method: 'GET',
-        url: 'https://cors-anywhere.herokuapp.com/http://api.open-notify.org/astros.json',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        }
-    }).done(function (response) {
-        ISSCrew = response.people;
-
-        // TODO: Demo item, remove.
-        console.log('ISS crew members: ', ISSCrew);
-    });
-}
-
-// TODO: Demo item, remove.
-function runDemo() {
-    getISSCrew();
+function init() {
     getISSLocation();
+    trackISS(2000);
 }
 
-// !! EXPIRIMENTAL !!
-/**
- * Grabs the entire infobox from a wikipedia page.
- * @param {string} title The title of the Wikipedia page to scrape.
- */
-function scrapeWikiInfoBox(title) {
-
-    let _title = title.replace(/ /g, '_');
-
-    $.ajax({
-        type: "GET",
-        url: `http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=${_title}&callback=?`,
-        contentType: "application/json; charset=utf-8",
-        async: false,
-        dataType: "json",
-        success: function (data) {
-
-            let markup = data.parse.text["*"];
-            let blurb = $('<div></div>').html(markup);
-            // Replace links with text, they won't work anyway
-            blurb.find('a').each(function () {
-                $(this).replaceWith($(this).html());
-            });
-
-            let nickname;
-            nickname = blurb.find('span.nickname').text();
-            console.log('Nickname: ' + nickname);
-
-            // Get crew member img src
-            let imgUrls = [];
-            blurb.find('img').each(function () {
-                imgUrls.push($(this).attr('src'));
-            });
-            imgSrc = imgUrls[0];
-            console.log('Img url: ' + imgSrc);
-
-            // Get crew member age
-            let age = blurb.find('span.ForceAgeToShow').text();
-            console.log('Age: ' + age.match(/\d+/g).map(Number));
-
-            $('#markup').html($(blurb).find('.infobox'));
-        },
-        error: function (errorMessage) {
-            console.log('Error: ' + errorMessage);
-        }
-    });
-}
+// #endregion Functions
