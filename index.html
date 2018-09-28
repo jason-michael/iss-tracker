@@ -22,41 +22,92 @@
 </head>
 
 <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-              
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="#">ISS Crew <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Map</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link disabled" href="#"></a>
-                    </li>
-                  </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" id="search-input" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" id="submit-button" type="submit">Search</button>
-                  </form>
-                </div>
-              </nav>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div id="mapDiv">
-                        
-                    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">ISS Location:
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#"></a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" id="search-input" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" id="submit-button" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div id="mapDiv">
+
                 </div>
             </div>
         </div>
-
-
+    </div>
+    <div class="row">
+        <div class="container table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Birth Country</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Oleg Germanovich</td>
+                        <td>Pilot</td>
+                        <td>Russia</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Andrew J. Feustel</td>
+                        <td>Commander</td>
+                        <td>United States Of America</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Richard Arnold II</td>
+                        <td>Tech</td>
+                        <td>United States Of America</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Sergey Valerevich</td>
+                        <td>Trainee</td>
+                        <td>Russia</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Alexander Gerst </td>
+                        <td>Flight Engineer</td>
+                        <td>Germany</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Serena M. Aunon-Chancellor</td>
+                        <td>Medical</td>
+                        <td>United States of America</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- table row -->
+    </div>
     <!-- Bootstrap scripts -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49'
         crossorigin='anonymous'></script>
@@ -67,10 +118,12 @@
         crossorigin=""></script>
     <!-- Google Places Autocomplete -->
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyD-kc7RMsdE13o6eAQEWeQECWzP8AJSr_A"></script>
+    <!-- moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <!-- main js -->
     <script src='assets/js/leaflet.js'></script>
     <script src='assets/js/main.js'></script>
-    
+
 </body>
 
 </html>
