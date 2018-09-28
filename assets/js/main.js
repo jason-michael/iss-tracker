@@ -10,7 +10,6 @@ let ISSInterval;
 
 // Initialize the address autocompletion
 google.maps.event.addDomListener(window, 'load', initAutocomplete);
-
 init();
 
 // #endregion Initialization
@@ -104,6 +103,8 @@ function getISSLocation() {
         // * Leaflet
         setMapView(ISSLocation.lat, ISSLocation.lng, 2);
         moveMarker(ISSLocation.lat, ISSLocation.lng);
+
+        console.log(ISSLocation);
     });
 }
 
@@ -123,10 +124,17 @@ function getISSPassTime(lat, lng) {
     });
 }
 
+/**
+ * Starts the location tracking interval.
+ * @param {*} interval Number in ms to update.
+ */
 function trackISS(interval) {
     ISSInterval = setInterval(getISSLocation, interval);
 }
 
+/**
+ * Stops the location tracking interval.
+ */
 function untrackISS() {
     clearInterval(ISSInterval);
 }
@@ -136,7 +144,7 @@ function untrackISS() {
  */
 function init() {
     getISSLocation();
-    trackISS(2000);
+    trackISS(5000);
 }
 
 // #endregion Functions
