@@ -11,6 +11,7 @@ google.maps.event.addDomListener(window, 'load', initAutocomplete);
 
 // TODO: Demo item, remove.
 runDemo();
+// setInterval(getISSLocation,1000);
 
 /* EVENTS */
 $(SEARCHBUTTON).on('click', function (e) {
@@ -94,6 +95,9 @@ function getISSLocation() {
 
         // TODO: Demo item, remove.
         console.log('Current ISS location: ', ISSLocation);
+
+        setMapView(ISSLocation.lat, ISSLocation.lng, 2);
+        moveMarker(ISSLocation.lat, ISSLocation.lng);
     });
 }
 
