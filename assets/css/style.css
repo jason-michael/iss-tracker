@@ -5,6 +5,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    background-color: black;
 }
 #mapDiv {
     height: 500px;
@@ -12,8 +13,13 @@ body {
     margin-top: 20px;
 }
 table {
-    color: rgb(191, 191, 223);
+    color: whitesmoke;
 }
 .nav {
     width: 100%;
+    background-color: black;
+}
+#submit-button {
+    border-color: whitesmoke;
+    color: whitesmoke;
 }
