@@ -1,5 +1,19 @@
-
+body {
+    /* min-width: 100vw; */
+    background-image: url("../images/spacebg.jpg");
+    overflow-x: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 #mapDiv {
     height: 500px;
+    width: 100%;
+    margin-top: 20px;
+}
+table {
+    color: rgb(191, 191, 223);
+}
+.nav {
     width: 100%;
 }
