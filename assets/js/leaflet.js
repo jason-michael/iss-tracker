@@ -1,7 +1,7 @@
 /* Initialize Leaflet map */
 var map = L.map('mapDiv').setView([0, 0], 13);
 let marker = L.marker([0,0]).addTo(map);
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
