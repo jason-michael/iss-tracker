@@ -18,20 +18,46 @@
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- jQuery -->
-    <script src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60='
-        crossorigin='anonymous'></script>
+    <script src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=' crossorigin='anonymous'></script>
 </head>
 
 <body>
+<<<<<<< HEAD
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">ISS Crew <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Map</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#"></a>
+                    </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" id="search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="submit-button" type="submit">Search</button>
+                  </form>
+                </div>
+              </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div id="mapDiv">
+                        
+                    </div>
+=======
 
     <div id='nav-row' class="row">
-        <nav class="navbar-toggle">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="container">
-                <div class="navbar-header ">
+                <!-- <div class="navbar-header ">
                     <form class="form-inline">
                         <div class="form-group">
                             <input type="text" class="form-control" id="search-input" placeholder="Enter Street Address">
@@ -40,15 +66,23 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                    <nav class="navbar navbar-light bg-light justify-content-end">
+                        <a class="navbar-brand"></a>
+                        <form class="form-inline">
+                          <input class="form-control " type="search" id="search-input" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success" id="submit-button" type="submit">
+                              <i class="fas fa-search"></i>
+                          </button>
+                        </form>
+                      </nav>
+>>>>>>> 3e57372b76df00ca101da77766838a30d1457107
                 </div>
-                <!-- Nav container div -->
             </div>
-            <!-- nav close -->
-        </nav>
-        <!-- nav-row div -->
-    </div>
-
-
+        </div>
 
 
     <!-- Bootstrap scripts -->
