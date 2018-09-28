@@ -1,31 +1,119 @@
 const SEARCHBAR = $('#search-input');
 const SEARCHBUTTON = $('#submit-button');
 const GOOGLE_API_KEY = 'AIzaSyD-kc7RMsdE13o6eAQEWeQECWzP8AJSr_A';
-let ISSLocation;
-let ISSPhysLoc;
-let ISSPassTime;
-let ISSInterval;
+let userMarker;
+let userAddress;
+let userAddressPassTime;
+let iss = {
+    geocode: {
+        lat: 0,
+        lon: 0
+    },
+    address: null,
+    marker: L.marker([0, 0]).addTo(map),
+    interval: null,
+    centerOnUpdate: true,
 
-// #region Initialization
+    run() {
+        iss.getGeocode();
+        iss.centerOnUpdate = false;
+
+        if (iss.interval == null) {
+            iss.interval = setInterval(iss.getGeocode, 5000);
+        }
+    },
+
+    stop() {
+        clearInterval(iss.interval);
+        iss.interval = null;
+    },
+
+    getGeocode() {
+        let _shouldCenter = iss.centerOnUpdate;
+
+        $.ajax({
+            method: 'GET',
+            url: 'https://cors-anywhere.herokuapp.com/http://api.open-notify.org/iss-now.json',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Access-Control-Allow-Origin': '*',
+            },
+        }).done(function (response) {
+            iss.geocode.lat = parseFloat(response.iss_position.latitude);
+            iss.geocode.lon = parseFloat(response.iss_position.longitude);
+            iss.updateMarker(iss.geocode.lat, iss.geocode.lon);
+
+            if (_shouldCenter) {
+                map.setView([iss.geocode.lat, iss.geocode.lon]);
+            }
+        });
+    },
+
+    getAddress(lat, lon) {
+        let queryURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${GOOGLE_API_KEY}`;
+
+        $.ajax({
+            method: 'GET',
+            url: queryURL
+        }).done(function (response) {
+
+            if (response.results.length === 0) {
+                iss.address = 'Not currently over a physical address.';
+            } else {
+                iss.address = response.results[0].formatted_address;
+            }
+
+            $('#iss-location-text').text(iss.address);
+        });
+    },
+
+    updateMarker(lat, lon) {
+        iss.marker.setLatLng([lat, lon]);
+        iss.marker.bindPopup(iss.address);
+
+        iss.getAddress(iss.geocode.lat, iss.geocode.lon);
+    },
+
+    getPassTime(lat, lon, address) {
+        // Disable search button until a response is retrieved.
+        SEARCHBUTTON.attr('disabled', true);
+        SEARCHBUTTON.toggleClass('btn-outline-success btn-outline-secondary');
+
+        let _address = address;
+
+        $.ajax({
+            method: 'GET',
+            url: `https://cors-anywhere.herokuapp.com/http://api.open-notify.org/iss-pass.json?lat=${lat}&lon=${lon}`,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Access-Control-Allow-Origin': '*',
+            },
+        }).done(function (response) {
+
+            if (response.response.length > 0) {
+                userAddressPassTime = response.response[0];
+                updateUserMarker(lat, lon);
+            }
+        });
+    }    
+}
 
 // Initialize the address autocompletion
 google.maps.event.addDomListener(window, 'load', initAutocomplete);
-init();
 
-// #endregion Initialization
+iss.run();
 
 // #region Events
-
 $(SEARCHBUTTON).on('click', function (e) {
     e.preventDefault();
-    let streetAddress = SEARCHBAR.val().trim();
-    getGeocode(streetAddress);
+    if (SEARCHBAR.val() != '') {
+        userAddress = SEARCHBAR.val().trim();
+        getAddressGeocode(userAddress);
+    };
 });
-
 // #endregion Events
 
 // #region Functions
-
 /**
  * Attaches the Google Places Autocomplete API to the searchbar.
  */
@@ -35,11 +123,12 @@ function initAutocomplete() {
 }
 
 /**
- * Sets geocodeLocation for a given address.
- * 
- * @param {string} address The address to geocode.
- */
-function getGeocode(address) {
+  * 1. Sets geocodeLocation for a given address.
+  * 2. Sets the ISS pass time info.
+  * 
+  * @param {string} address The address to geocode.
+  */
+function getAddressGeocode(address) {
 
     let urlAddress = address.replace(/ /g, '+');
 
@@ -49,102 +138,39 @@ function getGeocode(address) {
         method: 'GET',
         url: queryURL
     }).done(function (response) {
-        let geocodeLocation = {
+        let geocode = {
             lat: response.results[0].geometry.location.lat,
-            lng: response.results[0].geometry.location.lng
+            lon: response.results[0].geometry.location.lng
         };
 
-        getISSPassTime(geocodeLocation.lat, geocodeLocation.lng);
+        iss.getPassTime(geocode.lat, geocode.lon);
     });
 }
 
 /**
- * Get a physical location from latitude/longitude.
- * @param {*} lat 
- * @param {*} lng 
+ * Places a marker at given coordinates.
+ * @param {*} lat Latitude.
+ * @param {*} lon Longitude.
  */
-function getReversedGeocode(lat, lng) {
+function updateUserMarker(lat,lon) {
+    if (userMarker == null) {
+        userMarker = L.marker([lat,lon]).addTo(map);
+    } else {
+        userMarker.setLatLng([lat,lon]);
+    }
 
-    let queryURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_API_KEY}`;
+    let friendlyDate = moment(userAddressPassTime.risetime, 'X').format('ddd MMM Do YYYY, HH:mm');
+    let friendlyTime = Math.floor(userAddressPassTime.duration / 60);
 
-    $.ajax({
-        method: 'GET',
-        url: queryURL
-    }).done(function (response) {
+    let content = `
+    <p>${userAddress}</p>
+    <p>Next pass: ${friendlyDate}</p>
+    <p>Duration: ${friendlyTime} mintues</p>`;
 
-        if (response.results.length === 0) {
-            ISSPhysLoc = 'No physical address found.';
-        } else {
-            ISSPhysLoc = response.results[0].formatted_address;
-        }
-    });
+    userMarker.bindPopup(content).openPopup();
+
+    // Enable search button.
+    SEARCHBUTTON.attr('disabled', false);
+    SEARCHBUTTON.toggleClass('btn-outline-success btn-outline-secondary');
 }
-
-/**
- * Sets the current latitude and longitude coorinates of the ISS.
- * TODO: Return the coordinates rather than set the global variable.
- */
-function getISSLocation() {
-
-    $.ajax({
-        method: 'GET',
-        url: 'https://cors-anywhere.herokuapp.com/http://api.open-notify.org/iss-now.json',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        }
-    }).done(function (response) {
-        ISSLocation = {
-            lat: parseFloat(response.iss_position.latitude),
-            lng: parseFloat(response.iss_position.longitude)
-        };
-
-        getReversedGeocode(ISSLocation.lat, ISSLocation.lng);
-
-        // * Leaflet
-        setMapView(ISSLocation.lat, ISSLocation.lng, 2);
-        moveMarker(ISSLocation.lat, ISSLocation.lng);
-
-        console.log(ISSLocation);
-    });
-}
-
-/**
- * Gets upcoming passes for a particular location.
- * 
- * @param {*} lat Latitude
- * @param {*} lng Longitude
- */
-function getISSPassTime(lat, lng) {
-
-    $.ajax({
-        method: 'GET',
-        url: `https://cors-anywhere.herokuapp.com/http://api.open-notify.org/iss-pass.json?lat=${lat}&lon=${lng}`
-    }).done(function(response) {
-        ISSPassTime = response.response[0];
-    });
-}
-
-/**
- * Starts the location tracking interval.
- * @param {*} interval Number in ms to update.
- */
-function trackISS(interval) {
-    ISSInterval = setInterval(getISSLocation, interval);
-}
-
-/**
- * Stops the location tracking interval.
- */
-function untrackISS() {
-    clearInterval(ISSInterval);
-}
-
-/**
- * Initialize the app.
- */
-function init() {
-    getISSLocation();
-    trackISS(5000);
-}
-
 // #endregion Functions
