@@ -23,3 +23,14 @@ table {
     border-color: whitesmoke;
     color: whitesmoke;
 }
+.modal-header {
+    background:rgba(0,0,0,.85);
+    
+} 
+.modal-body {
+    background:rgba(0,0,0,.85);
+ 
+}
+#close {
+    color: whitesmoke;
+}
