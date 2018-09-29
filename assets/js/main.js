@@ -10,7 +10,7 @@ let iss = {
         lon: 0
     },
     address: null,
-    marker: L.marker([0, 0]).addTo(map),
+    marker: L.marker([0, 0], {icon: issIcon}).addTo(map),
     interval: null,
     centerOnUpdate: true,
 
@@ -64,6 +64,7 @@ let iss = {
             }
 
             $('#iss-location-text').text(iss.address);
+            iss.marker.bindPopup(iss.address);
         });
     },
 
@@ -74,12 +75,10 @@ let iss = {
         iss.getAddress(iss.geocode.lat, iss.geocode.lon);
     },
 
-    getPassTime(lat, lon, address) {
+    getPassTime(lat, lon) {
         // Disable search button until a response is retrieved.
         SEARCHBUTTON.attr('disabled', true);
         SEARCHBUTTON.toggleClass('btn-outline-success btn-outline-secondary');
-
-        let _address = address;
 
         $.ajax({
             method: 'GET',
