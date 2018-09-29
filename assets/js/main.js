@@ -97,12 +97,14 @@ let iss = {
     }    
 }
 
-// Initialize the address autocompletion
+// Initialize the address autocompletion.
 google.maps.event.addDomListener(window, 'load', initAutocomplete);
 
+// Start tracking the ISS.
 iss.run();
 
 // #region Events
+// User Address Search
 $(SEARCHBUTTON).on('click', function (e) {
     e.preventDefault();
     if (SEARCHBAR.val() != '') {
@@ -110,6 +112,12 @@ $(SEARCHBUTTON).on('click', function (e) {
         getAddressGeocode(userAddress);
     };
 });
+
+// Crew Table click
+$('tr').on('click', function() {
+
+});
+
 // #endregion Events
 
 // #region Functions
