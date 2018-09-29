@@ -1,13 +1,7 @@
-
 @import url('https://fonts.googleapis.com/css?family=Chakra+Petch:300,300italic,regular,italic,500,500italic,600,600italic,700,700italic');
 
     
-
-
-
 body {
-    /* min-width: 100vw; */
-    /* background-image: url("../images/spacebg.jpg"); */
     overflow-x: hidden;
     background-repeat: no-repeat;
     background-position: center;
