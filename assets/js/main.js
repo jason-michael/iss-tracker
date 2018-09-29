@@ -63,7 +63,7 @@ let iss = {
                 iss.address = response.results[0].formatted_address;
             }
 
-            $('#iss-location-text').text(iss.address);
+            $('#iss-location-text').text('Current location: ' + iss.address);
             iss.marker.bindPopup(iss.address);
         });
     },
@@ -94,7 +94,11 @@ let iss = {
                 updateUserMarker(lat, lon);
             }
         });
-    }    
+    },
+
+    recenter () {
+        map.setView([iss.geocode.lat, iss.geocode.lon], 4);
+    }
 }
 
 // Initialize the address autocompletion.
@@ -135,7 +139,10 @@ $('tr').on('click', function() {
 // Close the crew member modal
 $(document).on('click', '.close', function() {
     $('#crew-modal').hide();
-})
+});
+
+// Recenter ISS
+$('#iss-location-text').on('click', iss.recenter);
 
 // #endregion Events
 
