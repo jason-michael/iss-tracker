@@ -1,3 +1,4 @@
+
 body {
     /* min-width: 100vw; */
     /* background-image: url("../images/spacebg.jpg"); */
@@ -19,7 +20,14 @@ body {
 #submit-button {
     border-color: whitesmoke;
     color: whitesmoke;
+    transition: .33s;
+    border: 1px solid #fff;
 }
+
+#submit-button:hover {
+    border: 1px solid rgb(65, 188, 225);
+}
+
 .table-dark {
     background-color: black;
 }
@@ -47,3 +55,41 @@ body {
     color: whitesmoke;
 }
 
+/* Scrollbar */
+body::-webkit-scrollbar {
+    width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    /* background: royalblue; */
+    background: linear-gradient(0deg, royalblue, cyan);
+    
+}
+
+
+#search-input {
+    background: transparent;
+    outline: none;
+    border: 1px solid #fff;
+    color: rgb(65, 188, 225);
+}
+
+#search-input:focus {
+    border-color: rgb(65, 188, 225);
+    color: #fff;
+}
+
+.navbar-brand {
+    background-clip: text;
+    background: -webkit-linear-gradient(0deg, royalblue, cyan);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-weight: 600;
+}
