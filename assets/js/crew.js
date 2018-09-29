@@ -10,11 +10,11 @@ class Crew {
     }
 }
 
-let oleg = new Crew('oleg', 'Oleg Germanovich', 'Pilot', 'Russia', 'n/a', 'age', 'assets/images/crew/oleg.jpg');
-let andrew = new Crew('andrew', 'Andrew J. Feustel', 'Commander', 'United States', 'n/a', 'age', 'https://en.wikipedia.org/wiki/Andrew_J._Feustel#/media/File:Andrewfeustelv2.jpg');
-let richard = new Crew('richard', 'Richard Arnold II', 'Engineer', 'United States', 'n/a', 'age', 'https://en.wikipedia.org/wiki/Richard_R._Arnold#/media/File:Richardarnoldv2.jpg');
-let sergey = new Crew('sergey', 'Sergey Prokopyev', 'Trainee', 'Russia', 'n/a', 'age', 'https://en.wikipedia.org/wiki/Sergey_Prokopyev_(cosmonaut)#/media/File:Sergey_Prokopyev_-_NASA_portrait.jpg');
-let alexander = new Crew('alexander', 'Alexander Gerst', 'Engineer', 'Germany', 'n/a', 'age', 'https://en.wikipedia.org/wiki/Alexander_Gerst#/media/File:Alexander_Gerst,_official_portrait_in_2017.jpg');
-let serena = new Crew('serena', 'Serena M. Aunon-Chancellor', 'Medic', 'United States', 'n/a', 'age', 'https://en.wikipedia.org/wiki/Serena_Au%C3%B1%C3%B3n-Chancellor#/media/File:Serena_M._Aunon,_NASA_astronaut_candidate.jpg');
+let oleg = new Crew('oleg', 'Oleg Germanovich', 'Pilot', 'Russia', 'Soviet Army, Spacecraft components manufacturing', '47', 'assets/images/crew/oleg.jpg');
+let andrew = new Crew('andrew', 'Andrew J. Feustel', 'Commander', 'United States', 'Geophysicist', '53', 'assets/images/crew/andrew.jpg');
+let richard = new Crew('richard', 'Richard "Ricky" Arnold II', 'Engineer', 'United States', 'High school biology teacher', '54', 'assets/images/crew/richard.jpg');
+let sergey = new Crew('sergey', 'Sergey Prokopyev', 'Trainee', 'Russia', 'Pilot', '43', 'assets/images/crew/sergey.jpg');
+let alexander = new Crew('alexander', 'Alexander Gerst', 'Engineer', 'Germany', 'Geophysicist', '42', 'assets/images/crew/alexander.jpg');
+let serena = new Crew('serena', 'Serena M. Aunon-Chancellor', 'Medic', 'United States', 'Flight surgeon', '42', 'assets/images/crew/serena.jpg');
 
 let crewArray = [oleg, andrew, richard, sergey, alexander, serena];
