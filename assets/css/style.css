@@ -23,6 +23,17 @@ table {
     border-color: whitesmoke;
     color: whitesmoke;
 }
+
+
+/* Crew Modal content */
+.modal {
+    max-width: 98vw;
+}
+.crew-img {
+    width: 100%;
+    border-radius: 4px;
+}
+
 .modal-header {
     background:rgba(0,0,0,.85);
     
@@ -34,3 +45,4 @@ table {
 #close {
     color: whitesmoke;
 }
+

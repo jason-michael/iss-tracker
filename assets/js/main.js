@@ -116,6 +116,18 @@ $(SEARCHBUTTON).on('click', function (e) {
 // Crew Table click
 $('tr').on('click', function() {
 
+    let _crewMemberKey = $(this).attr('data-crew');
+    let _crewMember = crewArray.filter(obj => {
+        return obj.key === _crewMemberKey;
+    });
+
+    $('.modal-title').text(_crewMember[0].name);
+    $('.crew-img').attr('src', _crewMember[0].imgSrc);
+    $('.crew-title').text(_crewMember[0].title);
+    $('.crew-age').text(_crewMember[0].age);
+    $('.crew-country').text(_crewMember[0].country);
+    $('.crew-other-occupation').text(_crewMember[0].otherOccupation);
+
     $('#crew-modal').show();
 
 });
