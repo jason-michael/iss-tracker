@@ -1,5 +1,5 @@
 /* Initialize Leaflet map */
-let map = L.map('mapDiv').setView([0, 0], 4);
+let map = L.map('mapDiv', {minZoom:3, maxZoom:6}).setView([0, 0], 4);
 
 /* Openstreetmap Style */
 var CartoDB_DarkMatter = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
