@@ -1,9 +1,14 @@
 /* Initialize Leaflet map */
 let map = L.map('mapDiv').setView([0, 0], 4);
-L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+
+/* Openstreetmap Style */
+var CartoDB_DarkMatter = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
 }).addTo(map);
 
+/* ISS Icon */
 let issIcon = L.icon({
     iconUrl: 'assets/images/space-station.png',
     shadowUrl: '',
