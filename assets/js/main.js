@@ -128,7 +128,7 @@ $('tr').on('click', function() {
     $('.crew-country').text(_crewMember[0].country);
     $('.crew-other-occupation').text(_crewMember[0].otherOccupation);
 
-    $('#crew-modal').show();
+    $('#crew-modal').fadeIn('fast');
 
 });
 
