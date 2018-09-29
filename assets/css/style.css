@@ -1,4 +1,10 @@
 
+@import url('https://fonts.googleapis.com/css?family=Chakra+Petch:300,300italic,regular,italic,500,500italic,600,600italic,700,700italic');
+
+    
+
+
+
 body {
     /* min-width: 100vw; */
     /* background-image: url("../images/spacebg.jpg"); */
@@ -7,11 +13,18 @@ body {
     background-position: center;
     background-size: cover;
     background-color: black;
+    font-family: 'Chakra Petch';
 }
 #mapDiv {
     height: 80vh;
     width: 100%;
     margin-top: 20px;
+    margin-bottom: 20px;
+}
+#crew-div {
+    text-align: center;
+    font-size: 48px;
+    color: whitesmoke;
 }
 .nav {
     width: 100%;
