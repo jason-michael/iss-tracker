@@ -10,7 +10,7 @@ let iss = {
         lon: 0
     },
     address: null,
-    marker: L.marker([0, 0]).addTo(map),
+    marker: L.marker([0, 0], {icon: issIcon}).addTo(map),
     interval: null,
     centerOnUpdate: true,
 
@@ -64,6 +64,7 @@ let iss = {
             }
 
             $('#iss-location-text').text(iss.address);
+            iss.marker.bindPopup(iss.address);
         });
     },
 
@@ -74,12 +75,10 @@ let iss = {
         iss.getAddress(iss.geocode.lat, iss.geocode.lon);
     },
 
-    getPassTime(lat, lon, address) {
+    getPassTime(lat, lon) {
         // Disable search button until a response is retrieved.
         SEARCHBUTTON.attr('disabled', true);
         SEARCHBUTTON.toggleClass('btn-outline-success btn-outline-secondary');
-
-        let _address = address;
 
         $.ajax({
             method: 'GET',
@@ -98,12 +97,14 @@ let iss = {
     }    
 }
 
-// Initialize the address autocompletion
+// Initialize the address autocompletion.
 google.maps.event.addDomListener(window, 'load', initAutocomplete);
 
+// Start tracking the ISS.
 iss.run();
 
 // #region Events
+// User Address Search
 $(SEARCHBUTTON).on('click', function (e) {
     e.preventDefault();
     if (SEARCHBAR.val() != '') {
@@ -111,6 +112,19 @@ $(SEARCHBUTTON).on('click', function (e) {
         getAddressGeocode(userAddress);
     };
 });
+
+// Crew Table click
+$('tr').on('click', function() {
+
+    $('#crew-modal').show();
+
+});
+
+// Close the crew member modal
+$(document).on('click', '.close', function() {
+    $('#crew-modal').hide();
+})
+
 // #endregion Events
 
 // #region Functions
