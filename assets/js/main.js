@@ -116,7 +116,14 @@ $(SEARCHBUTTON).on('click', function (e) {
 // Crew Table click
 $('tr').on('click', function() {
 
+    $('#crew-modal').show();
+
 });
+
+// Close the crew member modal
+$(document).on('click', '.close', function() {
+    $('#crew-modal').hide();
+})
 
 // #endregion Events
 
