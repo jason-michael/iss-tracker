@@ -1,3 +1,6 @@
+/*===========================
+    Global
+===========================*/
 const SEARCHBAR = $('#search-input');
 const SEARCHBUTTON = $('#submit-button');
 const GOOGLE_API_KEY = 'AIzaSyD-kc7RMsdE13o6eAQEWeQECWzP8AJSr_A';
@@ -101,14 +104,19 @@ let iss = {
     }
 }
 
-// Initialize the address autocompletion.
+/*===========================
+    Initialization
+===========================*/
+// Address autocompletion.
 google.maps.event.addDomListener(window, 'load', initAutocomplete);
 
 // Start tracking the ISS.
 iss.run();
 
-// #region Events
-// User Address Search
+/*===========================
+   Events
+===========================*/
+// User Address Search.
 $(SEARCHBUTTON).on('click', function (e) {
     e.preventDefault();
     if (SEARCHBAR.val() != '') {
@@ -117,7 +125,7 @@ $(SEARCHBUTTON).on('click', function (e) {
     };
 });
 
-// Crew Table click
+// Crew Table click.
 $('tr').on('click', function() {
 
     let _crewMemberKey = $(this).attr('data-crew');
@@ -136,17 +144,17 @@ $('tr').on('click', function() {
 
 });
 
-// Close the crew member modal
+// Close the crew member modal.
 $(document).on('click', '.close', function() {
     $('#crew-modal').hide();
 });
 
-// Recenter ISS
+// Recenter ISS.
 $('#iss-location-text').on('click', iss.recenter);
 
-// #endregion Events
-
-// #region Functions
+/*===========================
+    Functions
+===========================*/
 /**
  * Attaches the Google Places Autocomplete API to the searchbar.
  */
@@ -165,7 +173,8 @@ function getAddressGeocode(address) {
 
     let urlAddress = address.replace(/ /g, '+');
 
-    let queryURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${urlAddress}&key=${GOOGLE_API_KEY}`;
+    let queryURL = 
+    `https://maps.googleapis.com/maps/api/geocode/json?address=${urlAddress}&key=${GOOGLE_API_KEY}`;
 
     $.ajax({
         method: 'GET',
@@ -206,4 +215,3 @@ function updateUserMarker(lat,lon) {
     SEARCHBUTTON.attr('disabled', false);
     SEARCHBUTTON.toggleClass('btn-outline-success btn-outline-secondary');
 }
-// #endregion Functions
