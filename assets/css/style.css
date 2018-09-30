@@ -41,6 +41,9 @@ body {
 .shadow-lg {
     background-color: black;
 }
+tr:hover {
+    cursor: pointer;
+}
 /* Crew Modal content */
 .modal {
     max-width: 98vw;
