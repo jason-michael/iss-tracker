@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
+    <title>ISS Tracker</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ISS Tracker</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/station.ico" type="image/x-icon">
     <link rel="icon" href="assets/images/station.ico" type="image/x-icon">
@@ -20,12 +20,10 @@
         crossorigin="">
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- jQuery -->
-    <script src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60='
-        crossorigin='anonymous'></script>
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-black">
         <a class="navbar-brand" href="#">ISS Tracker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -36,7 +34,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a id="iss-location-text" class="nav-link" href="#">Current Location: 
+                    <a id="iss-location-text" class="nav-link" href="#">Current Location:
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -49,16 +47,18 @@
                 <button class="btn btn-outline-dark my-2 my-sm-0" id="submit-button" type="submit">Search</button>
             </form>
         </div>
-    </nav>
-    <div class="container-fluid">
+    </nav> <!-- ./navbar-->
+
+    <!-- Map -->
+    <main class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div id="mapDiv">
-
-                </div>
+                <div id="mapDiv"></div>
             </div>
         </div>
-    </div>
+    </main><!-- ./map -->
+
+    <!-- Crew Table -->
     <div class="row">
         <div class="container table-responsive">
             <div id="crew-div">
@@ -113,9 +113,9 @@
                 </tbody>
             </table>
         </div>
-        <!-- table row -->
-    </div>
-    <!-- crew modal -->
+    </div><!-- ./crew table -->
+
+    <!-- Crew Modal -->
     <div id="crew-modal" class="modal mx-auto" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -132,13 +132,13 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-6">
                                     <p>Title</p>
                                     <p>Age</p>
                                     <p>Country</p>
                                     <p>Other Occupations</p>
                                 </div>
-                                <div class="col">
+                                <div class="col-6">
                                     <p class="crew-title">Pilot</p>
                                     <p class="crew-age">Age</p>
                                     <p class="crew-country">Country</p>
@@ -150,8 +150,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div><!-- ./crew modal-->
 
+    <!-- jQuery -->
+    <script src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60='
+        crossorigin='anonymous'></script>
     <!-- Bootstrap scripts -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49'
         crossorigin='anonymous'></script>
@@ -164,7 +167,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyD-kc7RMsdE13o6eAQEWeQECWzP8AJSr_A"></script>
     <!-- moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <!-- main js -->
+    <!-- local js -->
     <script src="assets/js/crew.js"></script>
     <script src='assets/js/leaflet.js'></script>
     <script src='assets/js/main.js'></script>
