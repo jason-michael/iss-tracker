@@ -1,6 +1,7 @@
+/* Fonts */
 @import url('https://fonts.googleapis.com/css?family=Chakra+Petch:300,300italic,regular,italic,500,500italic,600,600italic,700,700italic');
 
-    
+/* Elements */
 body {
     overflow-x: hidden;
     background-repeat: no-repeat;
@@ -9,21 +10,40 @@ body {
     background-color: black;
     font-family: 'Chakra Petch';
 }
+
+body::-webkit-scrollbar {
+    width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    /* background: royalblue; */
+    background: linear-gradient(0deg, royalblue, cyan);
+}
+
+tr:hover {
+    cursor: pointer;
+}
+
+/* IDs */
 #mapDiv {
     height: 80vh;
     width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 #crew-div {
     text-align: center;
     font-size: 48px;
     color: whitesmoke;
 }
-.nav {
-    width: 100%;
-    background-color: black;
-}
+
 #submit-button {
     border-color: whitesmoke;
     color: whitesmoke;
@@ -63,24 +83,6 @@ body {
     color: whitesmoke;
 }
 
-/* Scrollbar */
-body::-webkit-scrollbar {
-    width: 6px;
-}
-
-body::-webkit-scrollbar-track {
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.15);
-}
-
-body::-webkit-scrollbar-thumb {
-    border-radius: 12px;
-    /* background: royalblue; */
-    background: linear-gradient(0deg, royalblue, cyan);
-    
-}
-
-
 #search-input {
     background: transparent;
     outline: none;
@@ -93,6 +95,12 @@ body::-webkit-scrollbar-thumb {
     color: #fff;
 }
 
+/* Classes */
+.nav {
+    width: 100%;
+    background-color: black;
+}
+
 .navbar-brand {
     background-clip: text;
     background: -webkit-linear-gradient(0deg, royalblue, cyan);
@@ -100,4 +108,31 @@ body::-webkit-scrollbar-thumb {
     -webkit-text-fill-color: transparent;
 
     font-weight: 600;
+}
+
+.table-dark {
+    background-color: black;
+}
+
+.shadow-lg {
+    background-color: black;
+}
+
+.modal {
+    max-width: 98vw;
+}
+
+.modal-header {
+    background:rgba(0,0,0,.85);
+    
+} 
+
+.modal-body {
+    background:rgba(0,0,0,.85);
+ 
+}
+
+.crew-img {
+    width: 100%;
+    border-radius: 4px;
 }
