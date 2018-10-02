@@ -20,5 +20,5 @@ let issIcon = L.icon({
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-// map.setMaxBounds(map.getBounds());
+/* Map Max Bounds */
 map.setMaxBounds( [[-90,-180], [90,180]] )
