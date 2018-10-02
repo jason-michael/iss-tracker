@@ -38,12 +38,13 @@ body {
 .table-dark {
     background-color: black;
 }
-.shadow-lg {
-    background-color: black;
-}
 /* Crew Modal content */
 .modal {
     max-width: 98vw;
+}
+.modal-dialog{
+    border: 2px solid rgb(65, 188, 225);
+    border-radius: 10px;
 }
 .crew-img {
     width: 100%;
