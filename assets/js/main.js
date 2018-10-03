@@ -13,7 +13,9 @@ let iss = {
         lon: 0
     },
     address: null,
-    marker: L.marker([0, 0], {icon: issIcon}).addTo(map),
+    marker: L.marker([0, 0], {
+        icon: issIcon
+    }).addTo(map),
     interval: null,
     centerOnUpdate: true,
 
@@ -24,6 +26,10 @@ let iss = {
         if (iss.interval == null) {
             iss.interval = setInterval(iss.getGeocode, 5000);
         }
+
+        // Marker animation
+        $('img[src="assets/images/space-station.png"]').addClass('pulse');
+
     },
 
     stop() {
@@ -99,7 +105,7 @@ let iss = {
         });
     },
 
-    recenter () {
+    recenter() {
         map.setView([iss.geocode.lat, iss.geocode.lon], 4);
     }
 }
@@ -112,6 +118,7 @@ google.maps.event.addDomListener(window, 'load', initAutocomplete);
 
 // Start tracking the ISS.
 iss.run();
+
 
 /*===========================
    Events
@@ -126,7 +133,7 @@ $(SEARCHBUTTON).on('click', function (e) {
 });
 
 // Crew Table click.
-$('tr').on('click', function() {
+$('tr').on('click', function () {
 
     let _crewMemberKey = $(this).attr('data-crew');
     let _crewMember = crewArray.filter(obj => {
@@ -140,17 +147,25 @@ $('tr').on('click', function() {
     $('.crew-country').text(_crewMember[0].country);
     $('.crew-other-occupation').text(_crewMember[0].otherOccupation);
 
-    $('#crew-modal').fadeIn('fast');
+    $('#crew-modal').modal('show');
 
 });
 
 // Close the crew member modal.
-$(document).on('click', '.close', function() {
-    $('#crew-modal').hide();
+$(document).on('click', '.close', function () {
+    $('#crew-modal').modal('hide');
 });
 
 // Recenter ISS.
 $('#iss-location-text').on('click', iss.recenter);
+$('.navbar-brand').on('click', iss.recenter);
+
+// Rover photo click.
+$('.nasa-img').on('click', function () {
+    let imgSrc = $(this).attr('src');
+    $('#lightbox-img').attr('src', imgSrc);
+    $('#lightbox-modal').modal('show');
+});
 
 /*===========================
     Functions
@@ -164,17 +179,17 @@ function initAutocomplete() {
 }
 
 /**
-  * 1. Sets geocodeLocation for a given address.
-  * 2. Sets the ISS pass time info.
-  * 
-  * @param {string} address The address to geocode.
-  */
+ * 1. Sets geocodeLocation for a given address.
+ * 2. Sets the ISS pass time info.
+ * 
+ * @param {string} address The address to geocode.
+ */
 function getAddressGeocode(address) {
 
     let urlAddress = address.replace(/ /g, '+');
 
-    let queryURL = 
-    `https://maps.googleapis.com/maps/api/geocode/json?address=${urlAddress}&key=${GOOGLE_API_KEY}`;
+    let queryURL =
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${urlAddress}&key=${GOOGLE_API_KEY}`;
 
     $.ajax({
         method: 'GET',
@@ -194,11 +209,11 @@ function getAddressGeocode(address) {
  * @param {*} lat Latitude.
  * @param {*} lon Longitude.
  */
-function updateUserMarker(lat,lon) {
+function updateUserMarker(lat, lon) {
     if (userMarker == null) {
-        userMarker = L.marker([lat,lon]).addTo(map);
+        userMarker = L.marker([lat, lon]).addTo(map);
     } else {
-        userMarker.setLatLng([lat,lon]);
+        userMarker.setLatLng([lat, lon]);
     }
 
     let friendlyDate = moment(userAddressPassTime.risetime, 'X').format('ddd MMM Do YYYY, HH:mm');

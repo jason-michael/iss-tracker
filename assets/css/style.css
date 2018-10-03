@@ -3,7 +3,9 @@
 
 /* Elements */
 body {
+    width: 100vw;
     overflow-x: hidden;
+    overflow-y: scroll;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -30,15 +32,19 @@ tr:hover {
     cursor: pointer;
 }
 
+th {
+    color: rgb(47, 133, 160);
+}
+
 /* IDs */
 #mapDiv {
     height: 80vh;
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    width: 90vw;
+    margin: 20px auto;
 }
 
 #crew-div {
+    margin-top: 80px;
     text-align: center;
     font-size: 48px;
     color: whitesmoke;
@@ -94,26 +100,83 @@ tr:hover {
     background-color: black;
 }
 
-.modal {
+#crew-modal .modal {
     max-width: 98vw;
 }
 
-.modal-dialog {
+#crew-modal .modal-dialog {
     border: 2px solid rgb(65, 188, 225);
     border-radius: 10px;
 }
 
-.modal-header {
-    background:rgba(0,0,0,.85);
-    
-} 
+#crew-modal .modal-header {
+    background: rgba(0, 0, 0, 0.85);
 
-.modal-body {
-    background:rgba(0,0,0,.85);
- 
+}
+
+#crew-modal .modal-body {
+    background: rgba(0, 0, 0, .85);
+
 }
 
 .crew-img {
     width: 100%;
     border-radius: 4px;
+}
+
+/* NASA Images & lightbox */
+.images-title {
+    margin: 80px 0 10px 0;
+    text-align: center;
+    color: #fff;
+}
+
+#img-container {
+    width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.nasa-img {
+    width: 400px;
+    height: 200px;
+    margin: 4px;
+    border: 2px solid transparent;
+    object-fit: cover;
+}
+
+.nasa-img:hover {
+    cursor: pointer;
+    border: 2px solid royalblue;
+}
+
+#lightbox-modal > .modal-dialog {
+    display: flex;
+    justify-content: center;
+}
+
+#lightbox-img {
+    max-height: 90vh;
+    max-width: 90vw;
+    border: 2px solid royalblue;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.85)
+}
+
+.pulse {
+    animation: anim 5s ease-in-out infinite;
+}
+
+@keyframes anim {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .33;
+    }
+
+    
 }
