@@ -98,6 +98,11 @@ tr:hover {
     max-width: 98vw;
 }
 
+.modal-dialog {
+    border: 2px solid rgb(65, 188, 225);
+    border-radius: 10px;
+}
+
 .modal-header {
     background:rgba(0,0,0,.85);
     
