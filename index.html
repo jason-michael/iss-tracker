@@ -59,62 +59,109 @@
         </div>
     </main><!-- ./map -->
 
-    <!-- Crew Table -->
-    <div class="row">
-        <div class="container table-responsive">
-            <div id="crew-div">
-                <h1>Crew</h1>
+    <div class="container">
+        <div class="row">
+            
+            <!-- News Table -->
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8 offset-lg-2">
+                <div class="table-responsive">
+                    <div id="news-div">
+                        <h1>Top News</h1>
+                    </div>
+                    <table id="news-table" class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col" style="width: 80%">Title</th>
+                                <th scope="col" style="width: 20%">Source</th>
+                            </tr>
+                        </thead>
+                        <tbody id="news-table-body"></tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <button id="more-news-btn" class="btn btn-outline-dark my-2 my-sm-0" data-state="more">More...</button>
+
+                    </div>
+                </div>
+            </div><!-- ./news table -->
+
+            <!-- Crew Table -->
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8 offset-lg-2">
+                <div class="table-responsive">
+                    <div id="crew-div">
+                        <h1>Crew</h1>
+                    </div>
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Birth Country</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-crew="oleg">
+                                <th scope="row"></th>
+                                <td>Oleg Germanovich</td>
+                                <td>Pilot</td>
+                                <td>Russia</td>
+                            </tr>
+                            <tr data-crew="andrew">
+                                <th scope="row"></th>
+                                <td>Andrew J. Feustel</td>
+                                <td>Commander</td>
+                                <td>United States Of America</td>
+                            </tr>
+                            <tr data-crew="richard">
+                                <th scope="row"></th>
+                                <td>Richard Arnold II</td>
+                                <td>Engineer</td>
+                                <td>United States Of America</td>
+                            </tr>
+                            <tr data-crew="sergey">
+                                <th scope="row"></th>
+                                <td>Sergey Prokopyev</td>
+                                <td>Trainee</td>
+                                <td>Russia</td>
+                            </tr>
+                            <tr data-crew="alexander">
+                                <th scope="row"></th>
+                                <td>Alexander Gerst </td>
+                                <td>Flight Engineer</td>
+                                <td>Germany</td>
+                            </tr>
+                            <tr data-crew="serena">
+                                <th scope="row"></th>
+                                <td>Serena M. Aunon-Chancellor</td>
+                                <td>Medical</td>
+                                <td>United States of America</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <table class="table table-dark table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Birth Country</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-crew="oleg">
-                        <th scope="row"></th>
-                        <td>Oleg Germanovich</td>
-                        <td>Pilot</td>
-                        <td>Russia</td>
-                    </tr>
-                    <tr data-crew="andrew">
-                        <th scope="row"></th>
-                        <td>Andrew J. Feustel</td>
-                        <td>Commander</td>
-                        <td>United States Of America</td>
-                    </tr>
-                    <tr data-crew="richard">
-                        <th scope="row"></th>
-                        <td>Richard Arnold II</td>
-                        <td>Engineer</td>
-                        <td>United States Of America</td>
-                    </tr>
-                    <tr data-crew="sergey">
-                        <th scope="row"></th>
-                        <td>Sergey Prokopyev</td>
-                        <td>Trainee</td>
-                        <td>Russia</td>
-                    </tr>
-                    <tr data-crew="alexander">
-                        <th scope="row"></th>
-                        <td>Alexander Gerst </td>
-                        <td>Flight Engineer</td>
-                        <td>Germany</td>
-                    </tr>
-                    <tr data-crew="serena">
-                        <th scope="row"></th>
-                        <td>Serena M. Aunon-Chancellor</td>
-                        <td>Medical</td>
-                        <td>United States of America</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div><!-- ./crew table -->
+        </div><!-- ./crew table -->
+    </div>
+
+    <!-- Rover Photos -->
+    <h1 class="images-title">Images</h1>
+    <div id="img-container" class="mb-5">
+        <img src="assets/images/iss/1.jpg" class="nasa-img" alt="image-1">
+        <img src="assets/images/iss/2.jpg" class="nasa-img" alt="image-2">
+        <img src="assets/images/iss/3.jpg" class="nasa-img" alt="image-3">
+        <img src="assets/images/iss/4.jpg" class="nasa-img" alt="image-4">
+        <img src="assets/images/iss/5.jpg" class="nasa-img" alt="image-5">
+        <img src="assets/images/iss/6.jpg" class="nasa-img" alt="image-6">
+        <img src="assets/images/iss/7.jpg" class="nasa-img" alt="image-7">
+        <img src="assets/images/iss/8.jpg" class="nasa-img" alt="image-8">
+        <img src="assets/images/iss/9.jpg" class="nasa-img" alt="image-9">
+        <img src="assets/images/iss/10.jpg" class="nasa-img" alt="image-10">
+        <img src="assets/images/iss/11.jpg" class="nasa-img" alt="image-11">
+        <img src="assets/images/iss/12.jpg" class="nasa-img" alt="image-12">
+    </div>
 
     <!-- Crew Modal -->
     <div id="crew-modal" class="modal mx-auto" tabindex="-1" role="dialog">
@@ -153,24 +200,6 @@
         </div>
     </div><!-- ./crew modal-->
 
-    <!-- Rover Photos -->
-    <h1 class="images-title">Images</h1>
-    <div id="img-container" class="mb-5">
-        <img src="assets/images/iss/1.jpg" class="nasa-img" alt="image-1">
-        <img src="assets/images/iss/2.jpg" class="nasa-img" alt="image-2">
-        <img src="assets/images/iss/3.jpg" class="nasa-img" alt="image-3">
-        <img src="assets/images/iss/4.jpg" class="nasa-img" alt="image-4">
-        <img src="assets/images/iss/5.jpg" class="nasa-img" alt="image-5">
-        <img src="assets/images/iss/6.jpg" class="nasa-img" alt="image-6">
-        <img src="assets/images/iss/7.jpg" class="nasa-img" alt="image-7">
-        <img src="assets/images/iss/8.jpg" class="nasa-img" alt="image-8">
-        <img src="assets/images/iss/9.jpg" class="nasa-img" alt="image-9">
-        <img src="assets/images/iss/10.jpg" class="nasa-img" alt="image-10">
-        <img src="assets/images/iss/11.jpg" class="nasa-img" alt="image-11">
-        <img src="assets/images/iss/12.jpg" class="nasa-img" alt="image-12">
-    </div>
-
-
     <!-- Modal -->
     <div class="modal fade p-0" id="lightbox-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
@@ -196,6 +225,7 @@
     <!-- moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <!-- local js -->
+    <script src="assets/js/news.js"></script>
     <script src="assets/js/crew.js"></script>
     <script src='assets/js/leaflet.js'></script>
     <script src='assets/js/main.js'></script>
