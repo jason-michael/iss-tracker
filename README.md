@@ -1,6 +1,9 @@
 # Project 1 - ISS Tracker
 
-#### [Github page](https://jason-michael.github.io/project1/)
+![iss](/assets/images/iss.png?raw=true)
+
+
+#### [Github page](https://jason-michael.github.io/iss-tracker/)
 
 This app will display the International Space Station's overhead location in real-time. Users can also search a street address to find out when the ISS is estimated to be over that location next, and for how long. Top news related to the ISS is also included and each article is linked to its source.
 
